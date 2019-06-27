@@ -439,16 +439,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     props: ['resourceName', 'resourceId', 'field'],
 
-    data: function data() {
-        return {
-            // disabled: this.field.value_selected,
-        };
-    },
-    mounted: function mounted() {
-        console.log(this.field);
-    },
-
-
     methods: {
         /*
          * Set the initial, internal value for the field.

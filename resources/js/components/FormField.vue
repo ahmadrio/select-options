@@ -28,16 +28,6 @@ export default {
 
     props: ['resourceName', 'resourceId', 'field'],
 
-    data(){
-        return{
-            // disabled: this.field.value_selected,
-        }
-    },
-
-    mounted() {
-        console.log(this.field);
-    },
-
     methods: {
         /*
          * Set the initial, internal value for the field.

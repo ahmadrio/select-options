@@ -19,17 +19,17 @@ class SelectOptions extends Field
      * Options value
      *
      * @param array $options
-     * @param bool $displayChooseAnOption
+     * @param null $defaultValue
      * @return SelectOptions
      */
-    public function options(array $options, $defaultValue = null, $displayChooseAnOption = false)
+    public function options(array $options, $defaultValue = null)
     {
-        $this->defaultValue[$defaultValue] = $options[$defaultValue];
+        if (!is_null($defaultValue)) $this->defaultValue[$defaultValue] = $options[$defaultValue];
+
         return $this->withMeta([
             'options' => collect($options ?? [])->map(function ($label, $value) use ($defaultValue) {
                 if ($defaultValue != $value) return ['label' => $label, 'value' => $value];
-            })->filter()->values()->all(),
-            'display_choose_an_option' => $displayChooseAnOption,
+            })->filter()->values()->all()
         ]);
     }
 
