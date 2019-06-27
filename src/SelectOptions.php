@@ -13,6 +13,8 @@ class SelectOptions extends Field
      */
     public $component = 'select-options';
 
+    protected $defaultValue = [];
+
     /**
      * Options value
      *
@@ -20,12 +22,13 @@ class SelectOptions extends Field
      * @param bool $displayChooseAnOption
      * @return SelectOptions
      */
-    public function options(array $options, $displayChooseAnOption = false)
+    public function options(array $options, $defaultValue = null, $displayChooseAnOption = false)
     {
+        $this->defaultValue[$defaultValue] = $options[$defaultValue];
         return $this->withMeta([
-            'options' => collect($options ?? [])->map(function ($label, $value) {
-                return ['label' => $label, 'value' => $value];
-            })->values()->all(),
+            'options' => collect($options ?? [])->map(function ($label, $value) use ($defaultValue) {
+                if ($defaultValue != $value) return ['label' => $label, 'value' => $value];
+            })->filter()->values()->all(),
             'display_choose_an_option' => $displayChooseAnOption,
         ]);
     }
@@ -40,6 +43,7 @@ class SelectOptions extends Field
     {
         return $this->withMeta([
             'value_selected' => $bool,
+            'default_value' => $this->defaultValue
         ]);
     }
 }

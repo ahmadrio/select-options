@@ -6,13 +6,12 @@
                     class="w-full form-control form-select"
                     :class="errorClasses"
             >
-                <option v-show="field.display_choose_an_option" value="" selected>{{ __('Choose an option') }}</option>
+                <option v-for="(option, index) in field.default_value" :value="index" selected disabled>{{ option }}</option>
 
                 <option
                         v-for="option in field.options"
                         :value="option.value"
                         :selected="option.value == value"
-                        :disabled="disabled == option.value"
                 >
                     {{ option.label }}
                 </option>
@@ -31,7 +30,7 @@ export default {
 
     data(){
         return{
-            disabled: this.field.value_selected,
+            // disabled: this.field.value_selected,
         }
     },
 

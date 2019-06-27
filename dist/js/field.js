@@ -431,7 +431,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -442,7 +441,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            disabled: this.field.value_selected
+            // disabled: this.field.value_selected,
         };
     },
     mounted: function mounted() {
@@ -10746,27 +10745,21 @@ var render = function() {
             }
           },
           [
-            _c(
-              "option",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.field.display_choose_an_option,
-                    expression: "field.display_choose_an_option"
-                  }
-                ],
-                attrs: { value: "", selected: "" }
-              },
-              [_vm._v(_vm._s(_vm.__("Choose an option")))]
-            ),
+            _vm._l(_vm.field.default_value, function(option, index) {
+              return _c(
+                "option",
+                {
+                  attrs: { selected: "", disabled: "" },
+                  domProps: { value: index }
+                },
+                [_vm._v(_vm._s(option))]
+              )
+            }),
             _vm._v(" "),
             _vm._l(_vm.field.options, function(option) {
               return _c(
                 "option",
                 {
-                  attrs: { disabled: _vm.disabled == option.value },
                   domProps: {
                     value: option.value,
                     selected: option.value == _vm.value
